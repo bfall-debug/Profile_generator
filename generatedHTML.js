@@ -27,8 +27,8 @@ const colors = {
 
 function generateHTML(data) {
   return `<!DOCTYPE html>
-<html lang="en">
-   <head>
+  <html lang="en">
+    <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -170,5 +170,63 @@ function generateHTML(data) {
             zoom: .75; 
           } 
          }
-      </style>`
-        }
+      </style>
+    </head>
+      
+    <body>
+      <div class="wrapper">
+        <div class="photo-header">
+          <div class="row" style="margin-left: 30%">
+            <img src="${data.avatar_url}">
+          </div>
+          <h1>Hi! My name is ${data.name}!</h1>
+          <h4>${data.company ? `Currently @ ${data.company}` : ""}</h4>
+          <nav class="links-nav">
+            <a href="https://www.google.com/maps/place/${data.location}" target="_blank" class="nav-link"><i class="fas fa-location-arrow"></i> ${data.location}</a>
+            <a href="${data.html_url}" target="_blank" class="nav-link"><i class="fab fa-github-alt"></i> GitHub</a>
+            <a href="${data.blog}" target="_blank" class="nav-link"><i class="fas fa-rss"></i> Blog</a>
+          </nav>
+        </div>
+        <main>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <h4>${data.bio}</h4>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="card">
+                  <h4>Public Repositories</h4>
+                  <h5>${data.public_repos}</h5>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card">
+                  <h4>Followers</h4>
+                  <h5>${data.followers}</h5>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="card">
+                  <h4>Github Stars</h4>
+                  <h5>${data.stars}</h5>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card">
+                  <h4>Following</h4>
+                  <h5>${data.following}</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </body>
+  </html>`
+}
+
+module.exports = generateHTML
